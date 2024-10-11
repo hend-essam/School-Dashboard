@@ -23,7 +23,7 @@ const CountChart = () => {
   };
 
   return (
-    <div className="h-80 w-60 p-3 bg-white rounded-2xl flex flex-col">
+    <div className="w-1/3  h-80 p-3 bg-white rounded-2xl flex flex-col">
       {/* Title */}
       <div className="flex justify-between">
         <h1>Students</h1>
