@@ -1,5 +1,5 @@
 "use client";
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import Title from "./chartTitle";
 import {
   BarChart,
   Bar,
@@ -27,26 +27,23 @@ const data: DataItem[] = [
 
 const AttendanceChart = () => {
   return (
-    <div className="w-2/3 h-80 bg-white p-3 rounded-2xl">
+    <div className="w-full md:w-2/3 h-80 bg-white p-3 rounded-2xl">
       {/* Title */}
-      <div className="flex justify-between">
-        <h1>Attendance</h1>
-        <EllipsisHorizontalIcon className="h-6 w-6" />
-      </div>
+      <Title text="Attendance" />
       <div className="h-full w-full">
-        <ResponsiveContainer width="100%" height="90%">
+        <ResponsiveContainer width="99%" height="90%">
           <BarChart width={500} height={300} data={data} barSize={20}>
             <CartesianGrid vertical={false} strokeDasharray="3" stroke="#ddd" />
             <XAxis
               dataKey="name"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#d1d5db" }}
+              tick={{ fill: "#a7a7a7" }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#d1d5db" }}
+              tick={{ fill: "#a7a7a7" }}
               tickSize={20}
             />
             <Tooltip

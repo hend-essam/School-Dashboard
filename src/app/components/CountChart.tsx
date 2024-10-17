@@ -1,7 +1,7 @@
 "use client";
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { Girl, Boy } from "./icons/index";
+import Title from "./chartTitle";
 
 type DataItem = {
   name: string;
@@ -23,12 +23,9 @@ const CountChart = () => {
   };
 
   return (
-    <div className="w-1/3  h-80 p-3 bg-white rounded-2xl flex flex-col">
+    <div className="w-full md:w-1/3  h-80 p-3 bg-white rounded-2xl flex flex-col">
       {/* Title */}
-      <div className="flex justify-between">
-        <h1>Students</h1>
-        <EllipsisHorizontalIcon className="h-6 w-6" />
-      </div>
+      <Title text="Students" />
       {/* Chart */}
       <div className="w-full h-full">
         <ResponsiveContainer>
