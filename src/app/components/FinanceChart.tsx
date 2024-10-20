@@ -62,7 +62,7 @@ const FinanceChart = () => {
           <Line
             type="monotone"
             dataKey="income"
-            stroke="#24188b"
+            stroke="yellow"
             activeDot={{ r: 5 }}
           />
         </LineChart>

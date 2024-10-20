@@ -25,3 +25,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.react-calendar {
+  border: 3px solid #ffffff !important;
+  border-radius: 30px !important;
+  background-color: #ffffffab !important;
+  padding: 10px !important;
+}
+.react-calendar__tile {
+  border-radius: 20px !important;
+}
+.react-calendar__tile--active,
+.react-calendar__tile--hasActive {
+  background: #c01720 !important;
+  color: white !important;
+}

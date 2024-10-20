@@ -12,17 +12,17 @@ import {
 } from "recharts";
 
 type DataItem = {
-  name: string;
+  day: string;
   present: number;
   absent: number;
 };
 
 const data: DataItem[] = [
-  { name: "Mon", present: 65, absent: 50 },
-  { name: "Tue", present: 70, absent: 60 },
-  { name: "Wed", present: 95, absent: 80 },
-  { name: "Thu", present: 65, absent: 70 },
-  { name: "Fri", present: 62, absent: 58 },
+  { day: "Mon", present: 65, absent: 50 },
+  { day: "Tue", present: 70, absent: 60 },
+  { day: "Wed", present: 95, absent: 80 },
+  { day: "Thu", present: 65, absent: 70 },
+  { day: "Fri", present: 62, absent: 58 },
 ];
 
 const AttendanceChart = () => {
@@ -35,7 +35,7 @@ const AttendanceChart = () => {
           <BarChart width={500} height={300} data={data} barSize={20}>
             <CartesianGrid vertical={false} strokeDasharray="3" stroke="#ddd" />
             <XAxis
-              dataKey="name"
+              dataKey="day"
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#a7a7a7" }}
