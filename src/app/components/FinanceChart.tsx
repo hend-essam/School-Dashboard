@@ -1,5 +1,5 @@
 "use client";
-import Title from "./chartTitle";
+import Title from "./Title";
 import {
   LineChart,
   Line,

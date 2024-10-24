@@ -1,7 +1,7 @@
 "use client";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { Girl, Boy } from "./icons/index";
-import Title from "./chartTitle";
+import Title from "./Title";
 
 type DataItem = {
   name: string;

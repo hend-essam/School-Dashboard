@@ -125,7 +125,7 @@ const menuItems = [
 
 const Menu = () => {
   return (
-    <div className="text-sm w-[14%] md:w-[8%] lg:w-[18%] xl:w-[14%] bg-[#ffffff9c] p-4 rounded-[50px] lg:rounded-3xl">
+    <div className="text-sm w-[14%] md:w-[8%] lg:w-[14%] bg-[#ffffff9c] p-4 rounded-[50px] lg:rounded-3xl">
       <Logo />
       {menuItems.map((mainItem) => (
         <div className="flex flex-col gap-2" key={mainItem.title}>

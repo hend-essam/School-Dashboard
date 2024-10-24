@@ -18,7 +18,7 @@ export default function DashboardLayout({
         {/* left */}
         <Menu />
         {/* right */}
-        <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] p-[20px] flex flex-col gap-5">
+        <div className="w-[86%] md:w-[92%] xl:w-[86%] p-[20px] flex flex-col gap-5">
           <Navbar />
           {children && children}
         </div>
