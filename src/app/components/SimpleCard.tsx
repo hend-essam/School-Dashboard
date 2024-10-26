@@ -1,12 +1,18 @@
-type Event = {
+interface Iprop {
   title: string;
   time: string;
   content: string;
-};
+  bgColor?: string;
+}
 
-const Event = ({ title, time, content }: Event) => {
+const SimpleCard = ({
+  title,
+  time,
+  content,
+  bgColor = "[#ffffffab]",
+}: Iprop) => {
   return (
-    <div className="bg-[#ffffffab] p-2 rounded-xl border-white border-2">
+    <div className={`bg-${bgColor} p-2.5 rounded-xl`}>
       <div className="flex justify-between">
         <h2 className="font-semibold text-gray-600">{title}</h2>
         <span className="text-sm text-gray-400">{time}</span>
@@ -16,4 +22,4 @@ const Event = ({ title, time, content }: Event) => {
   );
 };
 
-export default Event;
+export default SimpleCard;

@@ -1,0 +1,49 @@
+import SimpleCard from "./SimpleCard";
+import Title from "./Title";
+
+const Announcements = [
+  {
+    title: "Event",
+    time: "2002/2/8",
+    content: "content, Lorem ipsum dolor sit amet",
+    bgColor: "[#c9c9c9a1]",
+  },
+  {
+    title: "Event",
+    time: "2002/2/8",
+    content: "content, Lorem ipsum dolor sit amet",
+    bgColor: "[#ebcdb8a6]",
+  },
+  {
+    title: "Event",
+    time: "2002/2/8",
+    content: "content, Lorem ipsum dolor sit amet",
+    bgColor: "[#f5f5dc]",
+  },
+];
+
+const AnnouncementsSection = () => {
+  return (
+    <div
+      className="rounded-b-[35px] p-2.5 h-full"
+      style={{ boxShadow: "0 0 10px 10px #cfcfcfd9" }}
+    >
+      <div className="flex flex-col gap-2 flex-1 p-3 pb-4 lg:px-0 lg:pt-0 w-full">
+        <Title
+          text="Announcements"
+          ele={<span className="text-gray-400 text-sm">View All</span>}
+        />
+        {Announcements.map((announcement) => (
+          <SimpleCard
+            title={announcement.title}
+            time={announcement.time}
+            content={announcement.content}
+            bgColor={announcement.bgColor}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default AnnouncementsSection;

@@ -1,3 +1,4 @@
+import AnnouncementsSection from "@/app/components/AnnouncementsSection";
 import AttendanceChart from "@/app/components/AttendanceChart";
 import CountChart from "@/app/components/CountChart";
 import EventCalendar from "@/app/components/EventCalendar";
@@ -21,7 +22,10 @@ const AdminPage = () => {
         </div>
         <FinanceChart />
       </div>
-      <EventCalendar />
+      <div className="flex flex-col gap-4">
+        <EventCalendar />
+        <AnnouncementsSection />
+      </div>
     </div>
   );
 };
