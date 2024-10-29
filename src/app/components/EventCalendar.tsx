@@ -3,7 +3,6 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Title from "./Title";
-import Event from "./Event";
 import SimpleCard from "./SimpleCard";
 
 type ValuePiece = Date | null;
@@ -43,8 +42,9 @@ const EventCalendar = () => {
       <Calendar onChange={onChange} value={value} />
       <div className="flex flex-col gap-2 flex-1 p-3 lg:p-0 w-full">
         <Title text="Events" />
-        {Events.map((event) => (
+        {Events.map((event, index) => (
           <SimpleCard
+            key={index}
             title={event.title}
             time={event.time}
             content={event.content}

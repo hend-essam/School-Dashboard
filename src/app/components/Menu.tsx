@@ -21,6 +21,7 @@ import {
   ChevronLeftIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
+import { role } from "../lib/data";
 
 const menuItems = [
   {
@@ -33,71 +34,85 @@ const menuItems = [
         icon: <HomeIcon />,
         label: "Home",
         href: "/",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <AcademicCapIcon />,
         label: "Teachers",
-        href: "/teacher",
+        href: "/list/teacher",
+        visible: ["admin", "teacher"],
       },
       {
         icon: <UserGroupIcon />,
         label: "Students",
-        href: "/student",
+        href: "/list/student",
+        visible: ["admin", "teacher"],
       },
       {
         icon: <UsersIcon />,
         label: "Parents",
-        href: "/parent",
+        href: "/list/parent",
+        visible: ["admin", "teacher"],
       },
       {
         icon: <BookOpenIcon />,
         label: "Subjects",
-        href: "/subjects",
+        href: "/list/subjects",
+        visible: ["admin"],
       },
       {
         icon: <PresentationChartLineIcon />,
         label: "Classes",
-        href: "/classes",
+        href: "/list/classes",
+        visible: ["admin", "teacher"],
       },
       {
         icon: <DocumentTextIcon />,
         label: "Lessons",
-        href: "/lessons",
+        href: "/list/lessons",
+        visible: ["admin", "teacher"],
       },
       {
         icon: <NewspaperIcon />,
         label: "Exams",
-        href: "/exams",
+        href: "/list/exams",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <PencilSquareIcon />,
         label: "Assignments",
-        href: "/assignments",
+        href: "/list/assignments",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <PercentBadgeIcon />,
         label: "Results",
-        href: "/results",
+        href: "/list/results",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <DocumentCheckIcon />,
         label: "Attendance",
-        href: "/attendance",
+        href: "/list/attendance",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <CalendarDaysIcon />,
         label: "Events",
-        href: "/events",
+        href: "/list/events",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <ChatBubbleOvalLeftEllipsisIcon />,
         label: "Messages",
-        href: "/messages",
+        href: "/list/messages",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <MegaphoneIcon />,
         label: "Announcements",
-        href: "/announcements",
+        href: "/list/announcements",
+        visible: ["admin", "teacher", "student", "parent"],
       },
     ],
   },
@@ -108,16 +123,19 @@ const menuItems = [
         icon: <UserCircleIcon />,
         label: "Profile",
         href: "/profile",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <Cog6ToothIcon />,
         label: "Settings",
         href: "/settings",
+        visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: <ArrowLeftStartOnRectangleIcon />,
         label: "Logout",
         href: "/logout",
+        visible: ["admin", "teacher", "student", "parent"],
       },
     ],
   },
@@ -125,27 +143,31 @@ const menuItems = [
 
 const Menu = () => {
   return (
-    <div className="text-sm w-[14%] md:w-[8%] lg:w-[14%] bg-[#ffffff9c] p-4 rounded-[50px] lg:rounded-3xl">
+    <div className="text-sm w-[14%] md:w-[8%] lg:w-[14%] bg-[#ffffff9c] lg:p-4 rounded-[50px] lg:rounded-3xl">
       <Logo />
       {menuItems.map((mainItem) => (
-        <div className="flex flex-col gap-2" key={mainItem.title}>
+        <div className="flex flex-col p-2 lg:p-0 gap-2" key={mainItem.title}>
           <span className="hidden lg:flex justify-between items-center text-gray-400 font-light my-4">
             {mainItem.title}
             {mainItem.icon}
           </span>
-          {mainItem.items.map((item) => (
-            <Link
-              href={item.href}
-              key={item.label}
-              className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2"
-            >
-              <div className="h-6 w-6">{item.icon}</div>
-              {/* {React.cloneElement(item.icon as React.ReactElement, {
-                className: "h-6 w-6",
-              })} */}
-              <span className="hidden lg:block">{item.label}</span>
-            </Link>
-          ))}
+          {mainItem.items.map((item) => {
+            if (item.visible.includes(role)) {
+              return (
+                <Link
+                  href={item.href.replace("/list", "")}
+                  key={item.label}
+                  className="flex items-center justify-center lg:justify-start gap-2 text-gray-500 p-2 rounded-xl hover:bg-[#c9c9c9a1]"
+                >
+                  <div className="h-6 w-6">{item.icon}</div>
+                  {/* {React.cloneElement(item.icon as React.ReactElement, {
+                    className: "h-6 w-6",
+                  })} */}
+                  <span className="hidden lg:block">{item.label}</span>
+                </Link>
+              );
+            }
+          })}
         </div>
       ))}
     </div>

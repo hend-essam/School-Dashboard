@@ -12,7 +12,7 @@ const Title = ({
   return (
     <div className="flex justify-between">
       <h1 className="font-bold text-lg">{text}</h1>
-      {ele}
+      <span className="cursor-pointer">{ele}</span>
     </div>
   );
 };

@@ -6,19 +6,19 @@ const Announcements = [
     title: "Event",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "[#c9c9c9a1]",
+    bgColor: "bg-[#c9c9c9a1]",
   },
   {
     title: "Event",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "[#ebcdb8a6]",
+    bgColor: "bg-[#ebcdb8a6]",
   },
   {
     title: "Event",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "[#f5f5dc]",
+    bgColor: "bg-[#f5f5dc]",
   },
 ];
 
