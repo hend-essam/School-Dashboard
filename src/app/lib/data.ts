@@ -915,14 +915,7 @@ export const announcementsData = [
   },
 ];
 
-interface CalendarEvent {
-  title: string;
-  allDay: boolean;
-  start?: Date;
-  end?: Date;
-}
-
-export const calendarEvents: CalendarEvent[] = [
+export const calendarEvents = [
   { title: "Math", allDay: false },
   { title: "English", allDay: false },
   { title: "Biology", allDay: false },
@@ -946,4 +939,29 @@ export const calendarEvents: CalendarEvent[] = [
   { title: "Physics", allDay: false },
   { title: "Chemistry", allDay: false },
   { title: "History", allDay: false },
+  { title: "Math", allDay: false },
+  { title: "Biology", allDay: false },
+  { title: "English", allDay: false },
+  { title: "History", allDay: false },
+  { title: "English", allDay: false },
+  { title: "Biology", allDay: false },
+  { title: "Physics", allDay: false },
+  { title: "History", allDay: false },
+  { title: "Math", allDay: false },
+  { title: "Biology", allDay: false },
+  { title: "Chemistry", allDay: false },
+  { title: "History", allDay: false },
+  { title: "English", allDay: false },
+  { title: "Biology", allDay: false },
+  { title: "Physics", allDay: false },
+  { title: "History", allDay: false },
+  { title: "Math", allDay: false },
+  { title: "English", allDay: false },
+  { title: "Physics", allDay: false },
+  { title: "Chemistry", allDay: false },
+  { title: "History", allDay: false },
+  { title: "Math", allDay: false },
+  { title: "Biology", allDay: false },
+  { title: "English", allDay: false },
+  { title: "Physics", allDay: false },
 ];

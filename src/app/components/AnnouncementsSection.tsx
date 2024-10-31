@@ -3,22 +3,22 @@ import Title from "./Title";
 
 const Announcements = [
   {
-    title: "Event",
+    title: "Announcement",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "bg-[#c9c9c9a1]",
+    bgColor: /* "bg-[#c9c9c9a1]" */ "bg-[#f2f1ff]",
   },
   {
-    title: "Event",
+    title: "Announcement",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "bg-[#ebcdb8a6]",
+    bgColor: /* "bg-[#ebcdb8a6]" */ "bg-[#fdf2fb]",
   },
   {
-    title: "Event",
+    title: "Announcement",
     time: "2002/2/8",
     content: "content, Lorem ipsum dolor sit amet",
-    bgColor: "bg-[#f5f5dc]",
+    bgColor: /* "bg-[#f5f5dc]" */ "bg-[#fefce8]",
   },
 ];
 

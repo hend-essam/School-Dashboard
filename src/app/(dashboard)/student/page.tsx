@@ -6,7 +6,7 @@ import Title from "@/app/components/Title";
 const StudentPage = () => {
   return (
     <div className="p-0 flex gap-4 flex-col lg:flex-row">
-      <div className="w-full flex flex-col gap-4 bg-white p-3 rounded-2xl">
+      <div className="w-full min-h-[900px] flex flex-col gap-4 bg-white p-3 rounded-2xl">
         <Title text="Schedule (4A)" ele={<></>} />
         <BigCalendar />
       </div>

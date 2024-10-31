@@ -8,37 +8,33 @@ import { View, Views } from "react-big-calendar";
 
 const localizer = momentLocalizer(moment);
 
-let currentDate = new Date();
-let day = currentDate.getDate();
-let month = currentDate.getMonth();
-let year = currentDate.getFullYear();
-
 const START_HOUR = 8;
-const EVENT_INTERVAL_HOURS = 1.8;
+const EVENT_INTERVAL_HOURS = 1;
 const EVENT_DURATION_MINUTES = 35;
-const ITEMS_PER_DAY = 5;
+const ITEMS_PER_DAY = 8;
 
 const initializeEventDates = () => {
-  calendarEvents.forEach((eventDate, index) => {
+  // Get the first day of the current week
+  const startOfWeek = moment().startOf("week").toDate();
+  const year = startOfWeek.getFullYear();
+  const month = startOfWeek.getMonth();
+  const day = startOfWeek.getDate();
+
+  return calendarEvents.map((eventDate, index) => {
     const dayOffset = day + Math.floor(index / ITEMS_PER_DAY);
     const hourOffset =
       START_HOUR + (index % ITEMS_PER_DAY) * EVENT_INTERVAL_HOURS;
-    eventDate.start = new Date(year, month, dayOffset, hourOffset, 0);
-    eventDate.end = new Date(
-      year,
-      month,
-      dayOffset,
-      hourOffset,
-      EVENT_DURATION_MINUTES
-    );
+    return {
+      ...eventDate,
+      start: new Date(year, month, dayOffset, hourOffset, 0),
+      end: new Date(year, month, dayOffset, hourOffset, EVENT_DURATION_MINUTES),
+    };
   });
 };
 
-initializeEventDates();
-console.log(calendarEvents);
-
 const BigCalendar = () => {
   const [view, setView] = useState<View>(Views.WORK_WEEK);
+  const [events, setEvents] = useState(initializeEventDates());
 
   const handleOnChangeView = (selectedView: View) => {
     setView(selectedView);
@@ -47,15 +43,15 @@ const BigCalendar = () => {
   return (
     <Calendar
       localizer={localizer}
-      events={calendarEvents}
+      events={events}
       startAccessor="start"
       endAccessor="end"
-      views={["work_week", "day"]}
+      views={{ work_week: true, day: true }}
       view={view}
       onView={handleOnChangeView}
       style={{ height: "98%" }}
-      min={calendarEvents[0].start}
-      max={calendarEvents[4].end}
+      min={events[0].start}
+      max={events[ITEMS_PER_DAY - 1].end}
     />
   );
 };

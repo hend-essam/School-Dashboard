@@ -41,3 +41,83 @@ body {
   background: #c01720 !important;
   color: white !important;
 }
+.rbc-btn-group:first-child {
+  display: none !important;
+}
+.rbc-btn-group:last-child {
+  font-size: 13px !important;
+}
+.rbc-btn-group:last-child button {
+  border: none !important;
+}
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  background-color: #ffff76 !important;
+}
+.rbc-toolbar button:hover {
+  border-radius: 5px !important;
+  background-color: #ffffa9 !important;
+}
+.rbc-toolbar-label {
+  text-align: left !important;
+}
+.rbc-toolbar button {
+  border-radius: unset !important;
+}
+.rbc-time-view {
+  border-color: #eee !important;
+}
+.rbc-allday-cell {
+  display: none !important;
+}
+.rbc-time-content {
+  border: none !important;
+}
+.rbc-time-gutter.rbc-time-column {
+  font-size: 12px !important;
+}
+.rbc-time-gutter.rbc-time-column .rbc-timeslot-group {
+  padding: 8px 0 !important;
+}
+.rbc-timeslot-group {
+  background-color: /* #f7fdff */ transparent !important;
+}
+.rbc-day-slot {
+  font-size: 14px !important;
+}
+.rbc-event {
+  border: none !important;
+  color: black !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  width: 99% !important;
+}
+.rbc-event:nth-child(1),
+.rbc-event:nth-child(5) {
+  background-color: #e2f8ff;
+}
+.rbc-event:nth-child(2),
+.rbc-event:nth-child(6) {
+  background-color: #fefce8;
+}
+.rbc-event:nth-child(3),
+.rbc-event:nth-child(7) {
+  background-color: #f2f1ff;
+}
+.rbc-event:nth-child(4),
+.rbc-event:nth-child(8) {
+  background-color: #fdf2fb;
+}
+.rbc-event-label {
+  color: gray !important;
+  margin-bottom: 5px;
+}
+.rbc-today {
+  background-color: unset !important;
+}
+.rbc-event:focus,
+.rbc-day-slot .rbc-background-event:focus {
+  outline: 5px auto #ffff76 !important;
+}
