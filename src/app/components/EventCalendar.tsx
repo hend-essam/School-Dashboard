@@ -35,10 +35,7 @@ const EventCalendar = () => {
   const [value, onChange] = useState<Value>(new Date());
 
   return (
-    <div
-      className="w-full rounded-t-[35px] flex flex-col md:flex-row lg:flex-col gap-4 p-2.5 pb-4 items-center md:items-stretch"
-      style={{ boxShadow: "0 0 10px 10px #cfcfcfd9" }}
-    >
+    <div className="w-full rounded-t-[35px] flex flex-col md:flex-row lg:flex-col gap-4 p-2.5 pb-4 items-center md:items-stretch">
       <Calendar onChange={onChange} value={value} />
       <div className="flex flex-col gap-2 flex-1 p-3 lg:p-0 w-full">
         <Title text="Events" />
