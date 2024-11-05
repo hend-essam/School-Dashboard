@@ -39,19 +39,19 @@ const menuItems = [
       {
         icon: <AcademicCapIcon />,
         label: "Teachers",
-        href: "/list/teacher",
+        href: "/list/teachers",
         visible: ["admin", "teacher"],
       },
       {
         icon: <UserGroupIcon />,
         label: "Students",
-        href: "/list/student",
+        href: "/list/students",
         visible: ["admin", "teacher"],
       },
       {
         icon: <UsersIcon />,
         label: "Parents",
-        href: "/list/parent",
+        href: "/list/parents",
         visible: ["admin", "teacher"],
       },
       {
@@ -155,7 +155,7 @@ const Menu = () => {
             if (item.visible.includes(role)) {
               return (
                 <Link
-                  href={item.href.replace("/list", "")}
+                  href={item.href /* .replace("/list", "") */}
                   key={item.label}
                   className="flex items-center justify-center lg:justify-start gap-2 text-gray-500 p-2 rounded-xl hover:bg-[#c9c9c9a1]"
                 >

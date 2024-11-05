@@ -1,8 +1,23 @@
 //dummy data
+import {
+  Role,
+  Teacher,
+  Student,
+  Parent,
+  Subject,
+  Class,
+  Lesson,
+  Exam,
+  Assignment,
+  Result,
+  Event,
+  Announcement,
+  CalendarEvent,
+} from "@/types/interfaces";
 
-export let role = "admin";
+export let role: Role = "admin";
 
-export const teachersData = [
+export const teachersData: Teacher[] = [
   {
     id: 1,
     teacherId: "1234567890",
@@ -125,7 +140,7 @@ export const teachersData = [
   },
 ];
 
-export const studentsData = [
+export const studentsData: Student[] = [
   {
     id: 1,
     studentId: "1234567890",
@@ -248,7 +263,7 @@ export const studentsData = [
   },
 ];
 
-export const parentsData = [
+export const parentsData: Parent[] = [
   {
     id: 1,
     name: "John Doe",
@@ -331,7 +346,7 @@ export const parentsData = [
   },
 ];
 
-export const subjectsData = [
+export const subjectsData: Subject[] = [
   {
     id: 1,
     name: "Math",
@@ -384,7 +399,7 @@ export const subjectsData = [
   },
 ];
 
-export const classesData = [
+export const classesData: Class[] = [
   {
     id: 1,
     name: "1A",
@@ -421,7 +436,7 @@ export const classesData = [
     supervisor: "Iva Frank",
   },
   {
-    id: 5,
+    id: 6,
     name: "5B",
     capacity: 20,
     grade: 5,
@@ -457,7 +472,7 @@ export const classesData = [
   },
 ];
 
-export const lessonsData = [
+export const lessonsData: Lesson[] = [
   {
     id: 1,
     subject: "Math",
@@ -520,7 +535,7 @@ export const lessonsData = [
   },
 ];
 
-export const examsData = [
+export const examsData: Exam[] = [
   {
     id: 1,
     subject: "Math",
@@ -593,7 +608,7 @@ export const examsData = [
   },
 ];
 
-export const assignmentsData = [
+export const assignmentsData: Assignment[] = [
   {
     id: 1,
     subject: "Math",
@@ -666,7 +681,7 @@ export const assignmentsData = [
   },
 ];
 
-export const resultsData = [
+export const resultsData: Result[] = [
   {
     id: 1,
     subject: "Math",
@@ -769,7 +784,7 @@ export const resultsData = [
   },
 ];
 
-export const eventsData = [
+export const eventsData: Event[] = [
   {
     id: 1,
     title: "Lake Trip",
@@ -852,7 +867,7 @@ export const eventsData = [
   },
 ];
 
-export const announcementsData = [
+export const announcementsData: Announcement[] = [
   {
     id: 1,
     title: "About 4A Math Test",
@@ -915,7 +930,7 @@ export const announcementsData = [
   },
 ];
 
-export const calendarEvents = [
+export const calendarEvents: CalendarEvent[] = [
   { title: "Math", allDay: false },
   { title: "English", allDay: false },
   { title: "Biology", allDay: false },

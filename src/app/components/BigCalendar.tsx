@@ -14,11 +14,11 @@ const EVENT_DURATION_MINUTES = 35;
 const ITEMS_PER_DAY = 8;
 
 const initializeEventDates = () => {
-  // Get the first day of the current week
-  const startOfWeek = moment().startOf("week").toDate();
-  const year = startOfWeek.getFullYear();
-  const month = startOfWeek.getMonth();
-  const day = startOfWeek.getDate();
+  // Set today's date as the start of the calendar week
+  const startOfToday = moment().toDate();
+  const year = startOfToday.getFullYear();
+  const month = startOfToday.getMonth();
+  const day = startOfToday.getDate();
 
   return calendarEvents.map((eventDate, index) => {
     const dayOffset = day + Math.floor(index / ITEMS_PER_DAY);
