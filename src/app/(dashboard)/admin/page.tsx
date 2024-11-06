@@ -22,13 +22,15 @@ const AdminPage = () => {
         </div>
         <FinanceChart />
       </div>
-      <div
-        className="flex flex-col gap-4 h-full rounded-[35px]"
-        style={{ boxShadow: "0 0 10px 10px #cfcfcfd9" }}
-      >
-        <EventCalendar />
-        <span className="border-dotted border-t-4 border-white"></span>
-        <AnnouncementsSection />
+      <div className="flex flex-col gap-4 h-full rounded-[35px]">
+        <EventCalendar
+          className="rounded-t-[35px]"
+          style={{ boxShadow: "0 0 10px 10px #cfcfcfd9" }}
+        />
+        <AnnouncementsSection
+          className="rounded-b-[35px]"
+          style={{ boxShadow: "0 0 10px 10px #cfcfcfd9" }}
+        />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
 interface Iprop {
   text: string;
-  ele?: React.ReactNode;
+  ele?: React.ReactNode | null;
   className?: string;
 }
 

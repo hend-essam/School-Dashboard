@@ -1,10 +1,6 @@
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
-interface IProps {
-  type: string;
-}
-
-const UserCard = ({ type }: IProps) => {
+const UserCard = ({ type }: { type: string }) => {
   return (
     <div className="bg-gray-200 rounded-2xl p-3 flex-1 min-w-[130px] flex flex-col gap-1">
       <div className="flex justify-between">

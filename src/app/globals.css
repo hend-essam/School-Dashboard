@@ -61,7 +61,7 @@ body {
   background-color: #ffffa9 !important;
 }
 .rbc-toolbar-label {
-  text-align: left !important;
+  text-align: right !important;
 }
 .rbc-toolbar button {
   border-radius: unset !important;

@@ -31,11 +31,20 @@ const Events = [
   },
 ];
 
-const EventCalendar = () => {
+const EventCalendar = ({
+  className,
+  style = {},
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) => {
   const [value, onChange] = useState<Value>(new Date());
 
   return (
-    <div className="w-full rounded-t-[35px] flex flex-col md:flex-row lg:flex-col gap-4 p-2.5 pb-4 items-center md:items-stretch">
+    <div
+      className={`w-full flex flex-col md:flex-row lg:flex-col gap-4 p-2.5 pb-4 items-center md:items-stretch ${className}`}
+      style={style}
+    >
       <Calendar onChange={onChange} value={value} />
       <div className="flex flex-col gap-2 flex-1 p-3 lg:p-0 w-full">
         <Title text="Events" />

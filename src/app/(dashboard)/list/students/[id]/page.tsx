@@ -23,30 +23,30 @@ const cards = [
   },
   {
     icon: <ClipboardDocumentListIcon className="h-6 w-6" />,
-    count: "2",
-    title: "Branches",
+    count: "6th",
+    title: "Grade",
   },
   {
     icon: <DocumentTextIcon className="h-6 w-6" />,
-    count: "6",
+    count: "18",
     title: "Lessons",
   },
   {
     icon: <PresentationChartLineIcon className="h-6 w-6" />,
-    count: "6",
-    title: "Classes",
+    count: "6A",
+    title: "Class",
   },
 ];
 
 const shotcuts = [
-  { href: "/", title: "Teacher's Classes", color: "bg-[#e2f8ff]" },
-  { href: "/", title: "Teacher's Students", color: "bg-[#fefce8]" },
-  { href: "/", title: "Teacher's Lessons", color: "bg-[#f2f1ff]" },
-  { href: "/", title: "Teacher's Exams", color: "bg-[#fdf2fb]" },
-  { href: "/", title: "Teacher's Assignments", color: "bg-[#fefce8]" },
+  { href: "/", title: "Student's Lessons", color: "bg-[#e2f8ff]" },
+  { href: "/", title: "Student's Teachers", color: "bg-[#fefce8]" },
+  { href: "/", title: "Student's Exams", color: "bg-[#fdf2fb]" },
+  { href: "/", title: "Student's Assignments", color: "bg-[#fefce8]" },
+  { href: "/", title: "Student's Results", color: "bg-[#f2f1ff]" },
 ];
 
-const SingleTeacherPage = () => {
+const SingleStudentPage = () => {
   return (
     <div className="flex-1 p-4 gap-4 flex flex-col xl:flex-row">
       {/* left */}
@@ -65,7 +65,7 @@ const SingleTeacherPage = () => {
               />
             </div>
             <div className="w-2/3 flex flex-col gap-2.5 justify-between">
-              <h1 className="text-xl font-semibold">Mohamed Almon</h1>
+              <h1 className="text-xl font-semibold">Student</h1>
               <p className="text-sm text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
@@ -104,7 +104,7 @@ const SingleTeacherPage = () => {
         </div>
         {/* bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[900px]">
-          <Title text="Teacher's Schedule" ele={null} />
+          <Title text="Student's Schedule" ele={null} />
           <BigCalendar />
         </div>
       </div>
@@ -130,4 +130,4 @@ const SingleTeacherPage = () => {
   );
 };
 
-export default SingleTeacherPage;
+export default SingleStudentPage;
