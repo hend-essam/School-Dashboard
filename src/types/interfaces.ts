@@ -100,4 +100,6 @@ export interface Announcement {
 export interface CalendarEvent {
   title: string;
   allDay: boolean;
+  startTime?: string;
+  endTime?: string;
 }

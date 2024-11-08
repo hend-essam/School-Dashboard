@@ -14,6 +14,7 @@ import IconButton from "@/app/components/IconButton";
 import { parentsData, role } from "@/app/lib/data";
 import Link from "next/link";
 import { Parent } from "@/types/interfaces";
+import FormModal from "@/app/components/FormModal";
 
 const columns = [
   {
@@ -60,21 +61,11 @@ const ParentsListPage = () => {
       <td className="hidden lg:table-cell">{item.address}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`list/teachers/${item.id}`}>
-            <IconButton
-              icon={PencilSquareIcon}
-              className="bg-[#c4cfff]"
-              color="text-white"
-              onClick={() => {}}
-            />
-          </Link>
           {role === "admin" && (
-            <IconButton
-              icon={TrashIcon}
-              className="bg-[#ebcdb8]"
-              color="text-white"
-              onClick={() => {}}
-            />
+            <>
+              <FormModal table="parent" type="update" data={item} />
+              <FormModal table="parent" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -102,12 +93,7 @@ const ParentsListPage = () => {
             size="h-6 w-6"
             onClick={() => {}}
           />
-          <IconButton
-            icon={PlusIcon}
-            className="bg-[#ffffa9]"
-            size="h-6 w-6"
-            onClick={() => {}}
-          />
+          {role === "admin" && <FormModal table="parent" type="create" />}
         </div>
       </div>
       {/* list */}

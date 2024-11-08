@@ -14,6 +14,7 @@ import IconButton from "@/app/components/IconButton";
 import { assignmentsData, role } from "@/app/lib/data";
 import Link from "next/link";
 import { Assignment } from "@/types/interfaces";
+import FormModal from "@/app/components/FormModal";
 
 const columns = [
   {
@@ -52,21 +53,11 @@ const AssignmentsListPage = () => {
       <td className="hidden md:table-cell">{item.dueDate}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`list/teachers/${item.id}`}>
-            <IconButton
-              icon={PencilSquareIcon}
-              className="bg-[#c4cfff]"
-              color="text-white"
-              onClick={() => {}}
-            />
-          </Link>
           {role === "admin" && (
-            <IconButton
-              icon={TrashIcon}
-              className="bg-[#ebcdb8]"
-              color="text-white"
-              onClick={() => {}}
-            />
+            <>
+              <FormModal table="assignment" type="update" data={item} />
+              <FormModal table="assignment" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -94,12 +85,7 @@ const AssignmentsListPage = () => {
             size="h-6 w-6"
             onClick={() => {}}
           />
-          <IconButton
-            icon={PlusIcon}
-            className="bg-[#ffffa9]"
-            size="h-6 w-6"
-            onClick={() => {}}
-          />
+          {role === "admin" && <FormModal table="assignment" type="create" />}
         </div>
       </div>
       {/* list */}

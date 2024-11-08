@@ -15,6 +15,7 @@ import Image from "next/image";
 import { role, studentsData } from "@/app/lib/data";
 import Link from "next/link";
 import { Student } from "@/types/interfaces";
+import FormModal from "@/app/components/FormModal";
 
 const columns = [
   {
@@ -74,7 +75,7 @@ const StudentsListPage = () => {
       <td className="hidden lg:table-cell">{item.address}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`list/teachers/${item.id}`}>
+          <Link href={`students/${item.id}`}>
             <IconButton
               icon={EyeIcon}
               className="bg-[#c4cfff]"
@@ -83,12 +84,7 @@ const StudentsListPage = () => {
             />
           </Link>
           {role === "admin" && (
-            <IconButton
-              icon={TrashIcon}
-              className="bg-[#ebcdb8]"
-              color="text-white"
-              onClick={() => {}}
-            />
+            <FormModal table="student" type="delete" id={item.id} />
           )}
         </div>
       </td>
@@ -116,12 +112,7 @@ const StudentsListPage = () => {
             size="h-6 w-6"
             onClick={() => {}}
           />
-          <IconButton
-            icon={PlusIcon}
-            className="bg-[#ffffa9]"
-            size="h-6 w-6"
-            onClick={() => {}}
-          />
+          {role === "admin" && <FormModal table="student" type="create" />}
         </div>
       </div>
       {/* list */}

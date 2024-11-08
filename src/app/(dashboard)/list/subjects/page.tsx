@@ -14,6 +14,7 @@ import IconButton from "@/app/components/IconButton";
 import { subjectsData, role } from "@/app/lib/data";
 import Link from "next/link";
 import { Subject } from "@/types/interfaces";
+import FormModal from "@/app/components/FormModal";
 
 const columns = [
   {
@@ -41,21 +42,11 @@ const SubjectsListPage = () => {
       <td className="hidden md:table-cell">{item.teachers.join(", ")}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`list/teachers/${item.id}`}>
-            <IconButton
-              icon={PencilSquareIcon}
-              className="bg-[#c4cfff]"
-              color="text-white"
-              onClick={() => {}}
-            />
-          </Link>
           {role === "admin" && (
-            <IconButton
-              icon={TrashIcon}
-              className="bg-[#ebcdb8]"
-              color="text-white"
-              onClick={() => {}}
-            />
+            <>
+              <FormModal table="subject" type="update" data={item} />
+              <FormModal table="subject" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -83,12 +74,7 @@ const SubjectsListPage = () => {
             size="h-6 w-6"
             onClick={() => {}}
           />
-          <IconButton
-            icon={PlusIcon}
-            className="bg-[#ffffa9]"
-            size="h-6 w-6"
-            onClick={() => {}}
-          />
+          {role === "admin" && <FormModal table="subject" type="create" />}
         </div>
       </div>
       {/* list */}

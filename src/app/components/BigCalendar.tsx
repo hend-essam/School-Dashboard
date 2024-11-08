@@ -9,19 +9,21 @@ import { View, Views } from "react-big-calendar";
 const localizer = momentLocalizer(moment);
 
 const START_HOUR = 8;
+const END_HOUR = 15; // Set end time to 3 PM
 const EVENT_INTERVAL_HOURS = 1;
 const EVENT_DURATION_MINUTES = 35;
-const ITEMS_PER_DAY = 8;
+const ITEMS_PER_DAY = 7;
 
 const initializeEventDates = () => {
-  // Set today's date as the start of the calendar week
-  const startOfToday = moment().toDate();
-  const year = startOfToday.getFullYear();
-  const month = startOfToday.getMonth();
-  const day = startOfToday.getDate();
+  const startOfToday = moment().startOf("day").toDate();
+  const weekStart = moment(startOfToday).startOf("week");
+  const year = weekStart.year();
+  const month = weekStart.month();
 
   return calendarEvents.map((eventDate, index) => {
-    const dayOffset = day + Math.floor(index / ITEMS_PER_DAY);
+    const dayOffset = moment(weekStart)
+      .add(Math.floor(index / ITEMS_PER_DAY), "days")
+      .date();
     const hourOffset =
       START_HOUR + (index % ITEMS_PER_DAY) * EVENT_INTERVAL_HOURS;
     return {
@@ -50,8 +52,12 @@ const BigCalendar = () => {
       view={view}
       onView={handleOnChangeView}
       style={{ height: "98%" }}
-      min={events[0].start}
-      max={events[ITEMS_PER_DAY - 1].end}
+      min={
+        new Date(moment().startOf("day").set("hour", START_HOUR).toISOString())
+      } // Start time set to 8 AM
+      max={
+        new Date(moment().startOf("day").set("hour", END_HOUR).toISOString())
+      } // End time set to 3 PM
     />
   );
 };
