@@ -14,6 +14,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import FormModal from "@/app/components/FormModal";
 
 const cards = [
   {
@@ -38,7 +39,7 @@ const cards = [
   },
 ];
 
-const shotcuts = [
+const shortcuts = [
   { href: "/", title: "Teacher's Classes", color: "bg-[#e2f8ff]" },
   { href: "/", title: "Teacher's Students", color: "bg-[#fefce8]" },
   { href: "/", title: "Teacher's Lessons", color: "bg-[#f2f1ff]" },
@@ -58,6 +59,7 @@ const SingleTeacherPage = () => {
             <div className="w-1/3">
               <Image
                 src="/user.png"
+                priority
                 alt=""
                 width={144}
                 height={144}
@@ -65,7 +67,30 @@ const SingleTeacherPage = () => {
               />
             </div>
             <div className="w-2/3 flex flex-col gap-2.5 justify-between">
-              <h1 className="text-xl font-semibold">Mohamed Almon</h1>
+              <div className="flex items-center gap-3">
+                <h1 className="text-xl font-semibold">Mohamed Ab</h1>
+                <FormModal
+                  table="teacher"
+                  type="update"
+                  data={{
+                    id: 1,
+                    username: "john_doe",
+                    teacherId: "1234567890",
+                    bloodType: "A+",
+                    firstName: "John",
+                    password: "hhjck1",
+                    lastName: "Doe",
+                    email: "john@doe.com",
+                    photo:
+                      "https://images.pexels.com/photos/2888150/pexels-photo-2888150.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                    phone: "1234567890",
+                    subjects: ["Math", "Geometry"],
+                    classes: ["1B", "2A", "3C"],
+                    address: "123 Main St, Anytown, USA",
+                    sex: "male",
+                  }}
+                />
+              </div>
               <p className="text-sm text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
@@ -92,7 +117,10 @@ const SingleTeacherPage = () => {
           {/* small card */}
           <div className="flex flex-1 gap-4 justify-between flex-wrap">
             {cards.map((card) => (
-              <div className="bg-white w-full p-4 rounded-md flex gap-4 md:w-[47%] xl:[45%] 2xl:[47%]">
+              <div
+                key={card.title}
+                className="bg-white w-full p-4 rounded-md flex gap-4 md:w-[47%] xl:[45%] 2xl:[47%]"
+              >
                 {card.icon}
                 <div className="">
                   <h1 className="text-xl font-semibold">{card.count}</h1>
@@ -113,12 +141,13 @@ const SingleTeacherPage = () => {
         <div className="bg-white rounded-md  p-4">
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
-            {shotcuts.map((shotcut) => (
+            {shortcuts.map((shortcut) => (
               <Link
-                href={shotcut.href}
-                className={`p-3 rounded-md ${shotcut.color}`}
+                key={shortcut.title}
+                href={shortcut.href}
+                className={`p-3 rounded-md ${shortcut.color}`}
               >
-                {shotcut.title}
+                {shortcut.title}
               </Link>
             ))}
           </div>

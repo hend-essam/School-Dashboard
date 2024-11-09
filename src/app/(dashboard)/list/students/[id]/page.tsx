@@ -38,7 +38,7 @@ const cards = [
   },
 ];
 
-const shotcuts = [
+const shortcuts = [
   { href: "/", title: "Student's Lessons", color: "bg-[#e2f8ff]" },
   { href: "/", title: "Student's Teachers", color: "bg-[#fefce8]" },
   { href: "/", title: "Student's Exams", color: "bg-[#fdf2fb]" },
@@ -58,6 +58,7 @@ const SingleStudentPage = () => {
             <div className="w-1/3">
               <Image
                 src="/user.png"
+                priority
                 alt=""
                 width={144}
                 height={144}
@@ -92,7 +93,10 @@ const SingleStudentPage = () => {
           {/* small card */}
           <div className="flex flex-1 gap-4 justify-between flex-wrap">
             {cards.map((card) => (
-              <div className="bg-white w-full p-4 rounded-md flex gap-4 md:w-[47%] xl:[45%] 2xl:[47%]">
+              <div
+                key={card.title}
+                className="bg-white w-full p-4 rounded-md flex gap-4 md:w-[47%] xl:[45%] 2xl:[47%]"
+              >
                 {card.icon}
                 <div className="">
                   <h1 className="text-xl font-semibold">{card.count}</h1>
@@ -113,12 +117,13 @@ const SingleStudentPage = () => {
         <div className="bg-white rounded-md  p-4">
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
-            {shotcuts.map((shotcut) => (
+            {shortcuts.map((shortcut) => (
               <Link
-                href={shotcut.href}
-                className={`p-3 rounded-md ${shotcut.color}`}
+                key={shortcut.title}
+                href={shortcut.href}
+                className={`p-3 rounded-md ${shortcut.color}`}
               >
-                {shotcut.title}
+                {shortcut.title}
               </Link>
             ))}
           </div>

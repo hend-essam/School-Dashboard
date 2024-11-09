@@ -59,6 +59,7 @@ const StudentsListPage = () => {
       <td className="flex items-center gap-4 p-4">
         <Image
           src={item.photo || "/user.png"}
+          priority
           alt=""
           width={40}
           height={40}

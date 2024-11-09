@@ -103,3 +103,10 @@ export interface CalendarEvent {
   startTime?: string;
   endTime?: string;
 }
+
+export interface Field {
+  label: string;
+  name: string;
+  type?: string;
+  options?: string[];
+}
