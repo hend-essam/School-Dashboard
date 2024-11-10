@@ -6,9 +6,7 @@ import Title from "@/app/components/Title";
 import {
   AdjustmentsHorizontalIcon,
   ArrowsUpDownIcon,
-  PlusIcon,
   EyeIcon,
-  TrashIcon,
 } from "@heroicons/react/24/outline";
 import IconButton from "@/app/components/IconButton";
 import Image from "next/image";

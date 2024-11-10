@@ -15,7 +15,7 @@ import {
   CalendarEvent,
 } from "@/types/interfaces";
 
-export let role: Role = "admin";
+export const role: Role = "admin";
 
 export const teachersData: Teacher[] = [
   {

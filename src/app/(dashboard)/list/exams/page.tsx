@@ -6,13 +6,9 @@ import Title from "@/app/components/Title";
 import {
   AdjustmentsHorizontalIcon,
   ArrowsUpDownIcon,
-  PlusIcon,
-  PencilSquareIcon,
-  TrashIcon,
 } from "@heroicons/react/24/outline";
 import IconButton from "@/app/components/IconButton";
 import { lessonsData, role } from "@/app/lib/data";
-import Link from "next/link";
 import { Lesson } from "@/types/interfaces";
 import FormModal from "@/app/components/FormModal";
 

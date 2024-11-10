@@ -36,7 +36,7 @@ const initializeEventDates = () => {
 
 const BigCalendar = () => {
   const [view, setView] = useState<View>(Views.WORK_WEEK);
-  const [events, setEvents] = useState(initializeEventDates());
+  const [events] = useState(initializeEventDates());
 
   const handleOnChangeView = (selectedView: View) => {
     setView(selectedView);
