@@ -1,6 +1,6 @@
 # School Dashboard
 
-A comprehensive school management dashboard built with React and TypeScript, designed to facilitate seamless interactions and manage essential school operations efficiently. This dashboard enables school administrators and educators to handle various tasks, from managing teachers and students to scheduling and tracking key academic activities.
+A comprehensive school management dashboard built with Next.js and TypeScript, designed to facilitate seamless interactions and manage essential school operations efficiently. This dashboard enables school administrators and educators to handle various tasks, from managing teachers and students to scheduling and tracking key academic activities.
 
 ## Features
 
