@@ -1,30 +1,35 @@
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { z, ZodTypeAny } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Field } from "@/types/interfaces";
 import { errors } from "@/app/lib/errors";
 import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 
-interface GeneralFormProps<T extends ZodTypeAny> {
+interface GeneralFormProps<T extends z.ZodTypeAny> {
   onSubmit: SubmitHandler<z.infer<T>>;
   fields: (Field | Field[])[];
   buttonType: "create" | "update";
-  data?: any;
+  data?: z.infer<T>;
   table: string;
 }
 
-const Form = <T extends ZodTypeAny>({
+const Form = <T extends z.ZodTypeAny>({
   onSubmit,
   fields,
   buttonType,
   data,
   table,
 }: GeneralFormProps<T>) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   // Dynamically generate the schema based on the fields array
   const schema = z.object(
     fields.flat().reduce((acc, field) => {
       const fieldName = field.name as keyof typeof errors;
-      acc[fieldName] = errors[fieldName];
+      acc[fieldName] = errors[fieldName] || z.any(); // Fallback to `z.any()` if no validation rule exists
       return acc;
     }, {} as Record<keyof typeof errors, z.ZodTypeAny>)
   );
@@ -33,12 +38,46 @@ const Form = <T extends ZodTypeAny>({
     register,
     handleSubmit,
     formState: { errors: formErrors },
+    setValue,
+    reset,
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
   });
 
+  // Set default values for all fields
+  useEffect(() => {
+    if (data) {
+      fields.flat().forEach((field) => {
+        if (data[field.name]) {
+          setValue(
+            field.name as keyof z.infer<typeof schema>,
+            data[field.name]
+          );
+        }
+      });
+    }
+  }, [data, fields, setValue]);
+
+  const handleFormSubmit: SubmitHandler<z.infer<typeof schema>> = async (
+    data
+  ) => {
+    setIsLoading(true);
+    setSubmitError(null);
+    try {
+      await onSubmit(data);
+      reset();
+    } catch (error) {
+      setSubmitError(
+        "An error occurred while submitting the form. Please try again."
+      );
+      console.error("Form submission error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Helper function to render form fields
-  const renderField = (field: any, data?: any) => {
+  const renderField = (field: Field, data?: any) => {
     const { label, name, type = "input", options } = field;
     const typedErrors = formErrors as Record<string, any>;
 
@@ -65,16 +104,18 @@ const Form = <T extends ZodTypeAny>({
             id={name}
             defaultValue={data && data[name]}
             type="text"
-            {...register(name)}
+            {...register(name as keyof z.infer<typeof schema>)}
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
           />
         )}
         {type === "date" && (
           <input
             id={name}
-            defaultValue={data && data[name]}
-            type="date"
-            {...register(name)}
+            defaultValue={
+              data && data[name] ? data[name].toISOString().split("T")[0] : ""
+            }
+            type={type}
+            {...register(name as keyof z.infer<typeof schema>)}
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
           />
         )}
@@ -82,7 +123,7 @@ const Form = <T extends ZodTypeAny>({
           <select
             id={name}
             defaultValue={data && data[name]}
-            {...register(name)}
+            {...register(name as keyof z.infer<typeof schema>)}
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
           >
             {options.map((option: any, index: any) => (
@@ -95,10 +136,19 @@ const Form = <T extends ZodTypeAny>({
         {type === "file" && (
           <input
             id={name}
-            type={type}
-            defaultValue={data && data[name]}
-            hidden
-            {...register(name)}
+            type="file"
+            {...register(name as keyof z.infer<typeof schema>, {
+              onChange: (e) => {
+                if (e.target.files && e.target.files[0]) {
+                  // Manually set the value for the file input
+                  setValue(
+                    name as keyof z.infer<typeof schema>,
+                    e.target.files[0]
+                  );
+                }
+              },
+            })}
+            className="hidden"
           />
         )}
         {typedErrors[name]?.message && (
@@ -111,7 +161,10 @@ const Form = <T extends ZodTypeAny>({
   };
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex flex-col gap-8"
+      onSubmit={handleSubmit(handleFormSubmit)}
+    >
       <h1 className="text-xl font-semibold">
         {buttonType === "create" ? `Create a new ${table}` : `Update ${table}`}
       </h1>
@@ -127,8 +180,17 @@ const Form = <T extends ZodTypeAny>({
           renderField(field)
         )
       )}
-      <button className="bg-blue-400 text-white p-2 rounded-md">
-        {buttonType === "create" ? "Create" : "Update"}
+      {submitError && <p className="text-xs text-[#d91d20]">{submitError}</p>}
+      <button
+        type="submit"
+        className="bg-blue-400 text-white p-2 rounded-md"
+        disabled={isLoading}
+      >
+        {isLoading
+          ? "Loading..."
+          : buttonType === "create"
+          ? "Create"
+          : "Update"}
       </button>
     </form>
   );
