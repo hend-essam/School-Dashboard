@@ -24,12 +24,16 @@ const Form = <T extends z.ZodTypeAny>({
 }: GeneralFormProps<T>) => {
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fileInfo, setFileInfo] = useState<{
+    name: string;
+    size: number;
+    preview: string | null;
+  } | null>(null);
 
-  // Dynamically generate the schema based on the fields array
   const schema = z.object(
     fields.flat().reduce((acc, field) => {
       const fieldName = field.name as keyof typeof errors;
-      acc[fieldName] = errors[fieldName] || z.any(); // Fallback to `z.any()` if no validation rule exists
+      acc[fieldName] = errors[fieldName] || z.any();
       return acc;
     }, {} as Record<keyof typeof errors, z.ZodTypeAny>)
   );
@@ -44,7 +48,6 @@ const Form = <T extends z.ZodTypeAny>({
     resolver: zodResolver(schema),
   });
 
-  // Set default values for all fields
   useEffect(() => {
     if (data) {
       fields.flat().forEach((field) => {
@@ -76,7 +79,6 @@ const Form = <T extends z.ZodTypeAny>({
     }
   };
 
-  // Helper function to render form fields
   const renderField = (field: Field, data?: any) => {
     const { label, name, type = "input", options } = field;
     const typedErrors = formErrors as Record<string, any>;
@@ -85,7 +87,7 @@ const Form = <T extends z.ZodTypeAny>({
       <div
         key={name}
         className={`${
-          type === "file" ? "justify-center pt-4" : null
+          type === "file" ? "justify-center pt-4" : ""
         } flex flex-col w-full md:w-1/4 gap-2`}
       >
         <label
@@ -99,6 +101,7 @@ const Form = <T extends z.ZodTypeAny>({
           {type === "file" && <CloudArrowUpIcon className="h-8 w-8" />}
           {label}
         </label>
+
         {type === "input" && (
           <input
             id={name}
@@ -108,6 +111,7 @@ const Form = <T extends z.ZodTypeAny>({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
           />
         )}
+
         {type === "date" && (
           <input
             id={name}
@@ -119,6 +123,7 @@ const Form = <T extends z.ZodTypeAny>({
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
           />
         )}
+
         {type === "select" && options && (
           <select
             id={name}
@@ -133,24 +138,48 @@ const Form = <T extends z.ZodTypeAny>({
             ))}
           </select>
         )}
+
         {type === "file" && (
-          <input
-            id={name}
-            type="file"
-            {...register(name as keyof z.infer<typeof schema>, {
-              onChange: (e) => {
-                if (e.target.files && e.target.files[0]) {
-                  // Manually set the value for the file input
-                  setValue(
-                    name as keyof z.infer<typeof schema>,
-                    e.target.files[0]
-                  );
-                }
-              },
-            })}
-            className="hidden"
-          />
+          <div className="flex flex-col gap-2">
+            <input
+              id={name}
+              type="file"
+              accept="image/*"
+              {...register(name as keyof z.infer<typeof schema>, {
+                onChange: (e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    const file = e.target.files[0];
+                    setValue(name as keyof z.infer<typeof schema>, file);
+                    setFileInfo({
+                      name: file.name,
+                      size: file.size,
+                      preview: URL.createObjectURL(file),
+                    });
+                  }
+                },
+              })}
+              className="hidden"
+            />
+
+            {fileInfo && (
+              <div className="mt-2">
+                <p className="text-sm font-semibold">File Details:</p>
+                <p className="text-xs text-gray-600">Name: {fileInfo.name}</p>
+                <p className="text-xs text-gray-600">
+                  Size: {(fileInfo.size / 1024).toFixed(2)} KB
+                </p>
+                {fileInfo.preview && (
+                  <img
+                    src={fileInfo.preview}
+                    alt="Preview"
+                    className="mt-2 w-32 h-32 object-cover rounded-md"
+                  />
+                )}
+              </div>
+            )}
+          </div>
         )}
+
         {typedErrors[name]?.message && (
           <p className="text-xs text-[#d91d20]">
             {typedErrors[name]?.message.toString()}
@@ -168,6 +197,7 @@ const Form = <T extends z.ZodTypeAny>({
       <h1 className="text-xl font-semibold">
         {buttonType === "create" ? `Create a new ${table}` : `Update ${table}`}
       </h1>
+
       {fields.map((field, index) =>
         Array.isArray(field) ? (
           <div
@@ -180,7 +210,9 @@ const Form = <T extends z.ZodTypeAny>({
           renderField(field)
         )
       )}
+
       {submitError && <p className="text-xs text-[#d91d20]">{submitError}</p>}
+
       <button
         type="submit"
         className="bg-blue-400 text-white p-2 rounded-md"
