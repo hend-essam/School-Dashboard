@@ -29,7 +29,7 @@ type ModalType = "create" | "update" | "delete";
 interface FormModalProps {
   table: TableType;
   type: ModalType;
-  data?: Record<string, any>; // Replace `any` with a more specific type if possible
+  data?: Record<string, any>;
   id?: number;
 }
 
@@ -78,7 +78,7 @@ const FormModal = ({ table, type, data, id }: FormModalProps) => {
       />
       {open && (
         <div className="w-full h-screen fixed left-0 top-0 bg-black bg-opacity-60 z-50 flex items-start justify-center overflow-y-auto">
-          <div className="bg-white p-8 rounded-md relative w-[90%] md:w-[70%] lg:w-[60%] 2xl:w-[40%] my-10">
+          <div className="bg-white p-8 rounded-md relative w-[90%] md:w-[70%] lg:w-[60%] 2xl:w-[40%] my-9">
             {type === "delete" && id ? (
               <form className="p-4 flex flex-col gap-4">
                 <span className="text-center font-medium">
